@@ -1,0 +1,6 @@
+﻿namespace RandomBoxes
+{
+    interface Shape
+    {
+    }
+}
