@@ -12,7 +12,7 @@ namespace RandomBoxes
         {
             //var shapes = CreateRectangles();
             var shapes = CreateTriangles();
-            while (true)
+            //while (true)
             {
                 Show(shapes);
                 foreach (var box in shapes)
@@ -23,29 +23,26 @@ namespace RandomBoxes
             }
         }
 
-        private static Triangle[] CreateTriangles()
+        private static Shape[] CreateTriangles()
         {
             var random = new Random();
-            var triangles = new Triangle[3];
-            for (var i = 0; i < triangles.Length; i++)
+            var shapes = new Shape[5];
+            for (var i = 0; i < shapes.Length; i++)
             {
-                triangles[i] = new Triangle(random, _width, _height);
+                if (random.Next(0, 1) == 0)
+                {
+                    shapes[i] = new Rectangle(random, _width, _height);
+                }
+                else
+                {
+                    shapes[i] = new Triangle(random, _width, _height / 10);
+                }
+
             }
-            return triangles;
+            return shapes;
         }
 
-        private static Rectangle[] CreateRectangles()
-        {
-            var random = new Random();
-            Rectangle[] boxes = new Rectangle[3];
-            for (var i = 0; i < boxes.Length; i++)
-            {
-                boxes[i] = new Rectangle(random, _width, _height);
-            }
-            return boxes;
-        }
-
-        private static void Show(Triangle[] boxes)
+        private static void Show(Shape[] boxes)
         {
             Console.Clear();
             for (var row = 0; row < _height; row++)

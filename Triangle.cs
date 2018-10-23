@@ -2,14 +2,14 @@
 
 namespace RandomBoxes
 {
-    class Triangle
+    class Triangle : Shape
     {
         public int directionX { get; private set; }
         public int directionY { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
         public int Size { get; private set; }
-        private int _minimumSize = 1;
+        private int _minimumSize = 1;      
 
         public Triangle(Random random, int maxX, int maxSize)
         {
@@ -23,13 +23,13 @@ namespace RandomBoxes
         public string GetCharacter(int row, int col)
         {
 
-            if (row < Y || col < X) return null;
+            if (row < Y || col < X-1) return null;
             var internalX = col - X;
             var internalY = row - Y;
             if (internalX > 2 * Size + 2 || internalY > Size + 1) return null;
             if (internalY == Size + 1) return "-";
             var xPositionSlash = Size - internalY;
-            var xPositionBackslash = Size + internalY;
+            var xPositionBackslash = Size + internalY +1;
             if (internalX == xPositionSlash) return "/";
             if (internalX == xPositionBackslash) return "\\";
 
